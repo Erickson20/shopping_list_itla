@@ -9,6 +9,8 @@
 #include <iostream>
 using namespace std;
 
+List* list = new List(); // creating a object of the List.cpp class.
+
 Menu::Menu()
 {
 
@@ -68,19 +70,45 @@ void Menu::routeAction(int option)
 void Menu::listItems()
 {
 	//TODO: Implement this
-	cout << "Implement  Menu::listItems" << endl;
+	Element* e = list -> getFirst();
+	if(e == NULL){
+		cout << "The list is empty." << endl;
+	}
+	else{
+		cout << "**********List of your items**********" << endl ;
+		while(e != NULL)
+		{
+			cout << e -> getName() << endl;
+			e = e -> getNext();
+		}
+	}
 }
 
 void Menu::addItems()
 {
 	//TODO: Implement this
-	cout << "Implement  Menu::addItems" << endl;
+	string name;
+	cout << "**********Add an item**********" << endl;
+	cout << "Type the name of the item => ";
+	cin >> name;
+
+	Element* e = new Element(name);
+	list -> add(e);
+
+	cout << "The item has been added.";
 }
 
 void Menu::removeItems()
 {
 	//TODO: Implement this
 	cout << "Implement  Menu::removeItems" << endl;
+	string name;
+	cout << "**********Remove an item**********" << endl;
+	cout << "Type the name of the item => ";
+	cin >> name;
+	list -> remove(name); //Passing the name of the item that the user typed to remove method in list.cpp
+
+	cout << "Item deleted." << endl;
 }
 
 void Menu::show()
